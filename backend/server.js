@@ -82,10 +82,11 @@ const connectDB = async () => {
     {
       return;
     }
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://muhammadfarrukht_db_user:wYt6YGiti3MnIEeE@cluster0.3o4g68f.mongodb.net/?appName=Cluster0', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://muhammadfarrukhofficial_db_user:wYt6YGiti3MnIEeE@cluster0.yuxzjvg.mongodb.net/hostel_management?retryWrites=true&w=majority', {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    // });
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     isConnected = true;
   } catch (error) {
@@ -94,12 +95,15 @@ const connectDB = async () => {
   }
 };
 
-export default async function handler(req,res) {
-  await connectDB();
-  res.json({database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'}) 
-}
+module.exports = connectDB;
+connectDB();
 
-handler();
+// export default async function handler(req,res) {
+//   await connectDB();
+//   res.json({database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'}) 
+// }
+
+// handler();
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
