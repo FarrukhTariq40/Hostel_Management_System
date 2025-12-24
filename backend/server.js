@@ -82,7 +82,7 @@ const connectDB = async () => {
     {
       return;
     }
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/hostel_management', {
+    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://muhammadfarrukht_db_user:wYt6YGiti3MnIEeE@cluster0.3o4g68f.mongodb.net/?appName=Cluster0', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
