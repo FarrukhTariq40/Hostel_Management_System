@@ -96,7 +96,7 @@ const connectDB = async () => {
 
 export default async function handler(req,res) {
   await connectDB();
-  res.json({database: "connected"}) 
+  res.json({database: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'}) 
 }
 
 handler();
