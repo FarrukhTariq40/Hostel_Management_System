@@ -94,8 +94,12 @@ const connectDB = async () => {
   }
 };
 
-connectDB();
+export default async function handler(req,res) {
+  await connectDB();
+  res.json({database: "connected"}) 
+}
 
+handler();
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
