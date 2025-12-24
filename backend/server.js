@@ -52,6 +52,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Health check endpoint
+connectDB();
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
@@ -96,7 +97,6 @@ const connectDB = async () => {
 };
 
 // module.exports = connectDB;
-connectDB();
 
 // export default async function handler(req,res) {
 //   await connectDB();
