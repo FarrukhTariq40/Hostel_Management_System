@@ -52,7 +52,31 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Health check endpoint
-connectDB();
+// connectDB();
+let isConnected = false;
+async function connectToMongoDB()
+{
+ try{
+   await mongoose.connect(process.env.MONGO_URI, { 
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+   isConnected = true;
+   console.log("connected to mongodb");
+ }
+  catch(error) {
+   console.log("Not Connecting to Mongo DB", error);
+ }
+}
+app.use((req,res,next)=>{
+  if(!isConnected)
+  {
+      connectToMongoDB();
+  }
+  next();
+})
+module.exports = app;
+
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'OK', 
@@ -76,25 +100,24 @@ app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/mess', require('./routes/mess'));
 
 // MongoDB Connection
-let isConnected = false;
-const connectDB = async () => {
-  try {
-    if(isConnected)
-    {
-      return;
-    }
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://muhammadfarrukhofficial_db_user:wYt6YGiti3MnIEeE@cluster0.yuxzjvg.mongodb.net/hostel_management?retryWrites=true&w=majority', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    // await mongoose.connect(process.env.MONGODB_URI);
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-    isConnected = true;
-  } catch (error) {
-    console.error('MongoDB connection error:', error.message);
-    process.exit(1);
-  }
-};
+// const connectDB = async () => {
+//   try {
+//     if(isConnected)
+//     {
+//       return;
+//     }
+//     const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://muhammadfarrukhofficial_db_user:wYt6YGiti3MnIEeE@cluster0.yuxzjvg.mongodb.net/hostel_management?retryWrites=true&w=majority', {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     });
+//     // await mongoose.connect(process.env.MONGODB_URI);
+//     console.log(`MongoDB Connected: ${conn.connection.host}`);
+//     isConnected = true;
+//   } catch (error) {
+//     console.error('MongoDB connection error:', error.message);
+//     process.exit(1);
+//   }
+// };
 
 // module.exports = connectDB;
 
@@ -104,10 +127,10 @@ const connectDB = async () => {
 // }
 
 // handler();
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`CORS enabled for: http://localhost:3000 and production URLs`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+//   console.log(`CORS enabled for: http://localhost:3000 and production URLs`);
+// });
 
