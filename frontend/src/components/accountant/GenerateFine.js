@@ -24,7 +24,7 @@ const GenerateFine = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await api.get('/accountant/students');
+      const response = await api.get('/api/accountant/students');
       setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);
@@ -34,7 +34,7 @@ const GenerateFine = () => {
 
   const fetchStudentFees = async () => {
     try {
-      const response = await api.get('/fees');
+      const response = await api.get('/api/fees');
       const studentFees = response.data.filter((fee) => {
         const feeStudentId = fee.studentId?._id || fee.studentId;
         return feeStudentId === selectedStudent;
@@ -97,7 +97,7 @@ const GenerateFine = () => {
         }
 
         // Get room charges
-        const roomsResponse = await api.get('/rooms/charges');
+        const roomsResponse = await api.get('/api/rooms/charges');
         const charges = roomsResponse.data;
         const roomCharge = charges[student.roomType] || 0;
 
