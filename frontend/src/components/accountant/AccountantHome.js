@@ -22,9 +22,9 @@ const AccountantHome = () => {
   const fetchDashboardData = async () => {
     try {
       const [reportsRes, feesRes, notifRes] = await Promise.all([
-        api.get('/accountant/reports'),
-        api.get('/fees'),
-        api.get('/notifications/unread-count'),
+        api.get('/api/accountant/reports'),
+        api.get('/api/fees'),
+        api.get('/api/notifications/unread-count'),
       ]);
 
       setStats({
