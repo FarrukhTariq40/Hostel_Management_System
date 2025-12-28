@@ -21,7 +21,7 @@ const MessMenu = () => {
 
   const fetchMenu = async () => {
     try {
-      const response = await api.get('/mess/menu');
+      const response = await api.get('/api/mess/menu');
       setMenu(response.data);
     } catch (error) {
       console.error('Error fetching menu:', error);
@@ -30,7 +30,7 @@ const MessMenu = () => {
 
   const fetchTimings = async () => {
     try {
-      const response = await api.get('/mess/timings');
+      const response = await api.get('/api/mess/timings');
       setTimings(response.data);
     } catch (error) {
       console.error('Error fetching timings:', error);
