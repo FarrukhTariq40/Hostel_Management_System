@@ -16,9 +16,9 @@ const StudentHome = () => {
   const fetchDashboardData = async () => {
     try {
       const [feeRes, menuRes, notifRes] = await Promise.all([
-        api.get('/fees/status'),
-        api.get('/mess/menu'),
-        api.get('/notifications'),
+        api.get('/api/fees/status'),
+        api.get('/api/mess/menu'),
+        api.get('/api/notifications'),
       ]);
 
       setFeeStatus(feeRes.data);
