@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.VITE_REACT_APP_BACKEND_BASEURL || 'https://hostel-management-system-backend--farrukh40.replit.app';
 
 export default API_BASE_URL;
 
