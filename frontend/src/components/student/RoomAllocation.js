@@ -16,7 +16,7 @@ const RoomAllocation = () => {
 
   const fetchRoomDetails = async () => {
     try {
-      const response = await api.get('/students/room-details');
+      const response = await api.get('/api/students/room-details');
       setRoomDetails(response.data);
     } catch (error) {
       console.error('Error fetching room details:', error);
@@ -25,7 +25,7 @@ const RoomAllocation = () => {
 
   const fetchCharges = async () => {
     try {
-      const response = await api.get('/rooms/charges');
+      const response = await api.get('/api/rooms/charges');
       setCharges(response.data);
     } catch (error) {
       console.error('Error fetching charges:', error);
@@ -36,7 +36,7 @@ const RoomAllocation = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post('/students/room-allocation', {
+      await api.post('/api/students/room-allocation', {
         roomType: selectedRoomType,
       });
       alert('Room allocation request submitted successfully!');
