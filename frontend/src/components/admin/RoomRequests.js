@@ -14,7 +14,7 @@ const RoomRequests = () => {
 
   const fetchRequests = async () => {
     try {
-      const response = await api.get('/admin/room-requests');
+      const response = await api.get('/api/admin/room-requests');
       setRequests(response.data);
     } catch (error) {
       console.error('Error fetching requests:', error);
@@ -23,7 +23,7 @@ const RoomRequests = () => {
 
   const fetchRooms = async () => {
     try {
-      const response = await api.get('/rooms');
+      const response = await api.get('/api/rooms');
       setRooms(response.data.rooms || []);
     } catch (error) {
       console.error('Error fetching rooms:', error);
@@ -32,7 +32,7 @@ const RoomRequests = () => {
 
   const handleApprove = async (studentId) => {
     try {
-      await api.put(`/admin/room-requests/${studentId}/approve`, {
+      await api.put(`/api/admin/room-requests/${studentId}/approve`, {
         roomNumber: selectedRoom || undefined,
       });
       setSelectedRequest(null);
@@ -48,7 +48,7 @@ const RoomRequests = () => {
   const handleReject = async (studentId) => {
     if (window.confirm('Are you sure you want to reject this request?')) {
       try {
-        await api.put(`/admin/room-requests/${studentId}/reject`);
+        await api.put(`/api/admin/room-requests/${studentId}/reject`);
         setSelectedRequest(null);
         fetchRequests();
         alert('Room allocation request rejected!');
