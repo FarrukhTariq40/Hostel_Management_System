@@ -21,7 +21,7 @@ const FeeRecords = () => {
 
   const fetchFees = async () => {
     try {
-      const response = await api.get('/fees');
+      const response = await api.get('/api/fees');
       setFees(response.data);
     } catch (error) {
       console.error('Error fetching fees:', error);
@@ -30,7 +30,7 @@ const FeeRecords = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await api.get('/accountant/students');
+      const response = await api.get('/api/accountant/students');
       setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);
@@ -40,7 +40,7 @@ const FeeRecords = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/fees', {
+      await api.post('/api/fees', {
         ...formData,
         amount: parseFloat(formData.amount),
         roomCharge: parseFloat(formData.roomCharge),
@@ -67,7 +67,7 @@ const FeeRecords = () => {
     const paymentMethod = prompt('Enter payment method:');
     if (paymentMethod) {
       try {
-        await api.put(`/fees/${feeId}/pay`, {
+        await api.put(`/api/fees/${feeId}/pay`, {
           paymentMethod,
         });
         fetchFees();
