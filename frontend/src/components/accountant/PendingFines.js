@@ -10,7 +10,7 @@ const PendingFines = () => {
 
   const fetchPendingFines = async () => {
     try {
-      const response = await api.get('/fees/pending-fines');
+      const response = await api.get('/api/fees/pending-fines');
       setPendingFines(response.data);
     } catch (error) {
       console.error('Error fetching pending fines:', error);
