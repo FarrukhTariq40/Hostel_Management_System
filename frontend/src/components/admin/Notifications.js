@@ -16,7 +16,7 @@ const Notifications = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await api.get('/notifications');
+      const response = await api.get('/api/notifications');
       setNotifications(response.data);
     } catch (error) {
       console.error('Error fetching notifications:', error);
@@ -26,7 +26,7 @@ const Notifications = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post('/notifications', formData);
+      await api.post('/api/notifications', formData);
       setShowForm(false);
       setFormData({ title: '', message: '', recipient: 'all' });
       fetchNotifications();
@@ -39,7 +39,7 @@ const Notifications = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this notification?')) {
       try {
-        await api.delete(`/notifications/${id}`);
+        await api.delete(`/api/notifications/${id}`);
         fetchNotifications();
         alert('Notification deleted successfully!');
       } catch (error) {
