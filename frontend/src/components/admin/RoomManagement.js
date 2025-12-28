@@ -23,7 +23,7 @@ const RoomManagement = () => {
 
   const fetchCharges = async () => {
     try {
-      const response = await api.get('/rooms/charges');
+      const response = await api.get('/api/rooms/charges');
       setCharges(response.data);
     } catch (error) {
       console.error('Error fetching charges:', error);
@@ -32,7 +32,7 @@ const RoomManagement = () => {
 
   const fetchRooms = async () => {
     try {
-      const response = await api.get('/rooms');
+      const response = await api.get('/api/rooms');
       setRooms(response.data.rooms || []);
     } catch (error) {
       console.error('Error fetching rooms:', error);
@@ -41,7 +41,7 @@ const RoomManagement = () => {
 
   const fetchAllocations = async () => {
     try {
-      const response = await api.get('/rooms/allocations');
+      const response = await api.get('/api/rooms/allocations');
       setAllocations(response.data);
     } catch (error) {
       console.error('Error fetching allocations:', error);
@@ -50,7 +50,7 @@ const RoomManagement = () => {
 
   const handleUpdateCharges = async () => {
     try {
-      await api.put('/rooms/charges', charges);
+      await api.put('/api/rooms/charges', charges);
       alert('Room charges updated successfully!');
       fetchCharges();
       fetchRooms();
@@ -65,7 +65,7 @@ const RoomManagement = () => {
       return;
     }
     try {
-      await api.post('/rooms', {
+      await api.post('/api/rooms', {
         roomNumber: newRoom.roomNumber,
         roomType: newRoom.roomType,
         charge: Number(newRoom.charge),
