@@ -10,7 +10,7 @@ const Notifications = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await api.get('/notifications');
+      const response = await api.get('/api/notifications');
       setNotifications(response.data);
     } catch (error) {
       console.error('Error fetching notifications:', error);
