@@ -10,7 +10,7 @@ const FinancialReports = () => {
 
   const fetchReport = async () => {
     try {
-      const response = await api.get('/accountant/reports');
+      const response = await api.get('/api/accountant/reports');
       setReport(response.data);
     } catch (error) {
       console.error('Error fetching report:', error);
@@ -19,7 +19,7 @@ const FinancialReports = () => {
 
   const handleSendToAdmin = async () => {
     try {
-      await api.post('/accountant/reports/send');
+      await api.post('/api/accountant/reports/send');
       alert('Financial report sent to admin successfully!');
     } catch (error) {
       console.error('Error sending report:', error);
