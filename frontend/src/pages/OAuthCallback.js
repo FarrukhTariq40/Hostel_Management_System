@@ -27,7 +27,7 @@ const OAuthCallback = () => {
 
       // Fetch user data
       axios
-        .get('/auth/me')
+        .get('/api/auth/me')
         .then((response) => {
           const user = response.data;
           
