@@ -12,7 +12,7 @@ const Complaints = () => {
 
   const fetchComplaints = async () => {
     try {
-      const response = await api.get('/complaints');
+      const response = await api.get('/api/complaints');
       setComplaints(response.data);
     } catch (error) {
       console.error('Error fetching complaints:', error);
@@ -25,7 +25,7 @@ const Complaints = () => {
       return;
     }
     try {
-      await api.put(`/complaints/${id}/resolve`, {
+      await api.put(`/api/complaints/${id}/resolve`, {
         adminResponse: response,
       });
       setSelectedComplaint(null);
