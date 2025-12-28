@@ -33,7 +33,7 @@ const MessManagement = () => {
 
   const fetchMenu = async () => {
     try {
-      const response = await api.get('/mess/menu');
+      const response = await api.get('/api/mess/menu');
       setMenu(response.data);
     } catch (error) {
       console.error('Error fetching menu:', error);
@@ -42,7 +42,7 @@ const MessManagement = () => {
 
   const fetchTimings = async () => {
     try {
-      const response = await api.get('/mess/timings');
+      const response = await api.get('/api/mess/timings');
       if (response.data) {
         setTimings(response.data);
       }
@@ -53,7 +53,7 @@ const MessManagement = () => {
 
   const handleUpdateMenu = async () => {
     try {
-      await api.put('/mess/menu', {
+      await api.put('/api/mess/menu', {
         day: selectedDay,
         breakfast: { items: dayMenu.breakfast.items, timing: timings.breakfast },
         lunch: { items: dayMenu.lunch.items, timing: timings.lunch },
@@ -68,7 +68,7 @@ const MessManagement = () => {
 
   const handleUpdateTimings = async () => {
     try {
-      await api.put('/mess/timings', {
+      await api.put('/api/mess/timings', {
         breakfast: timings.breakfast,
         lunch: timings.lunch,
         dinner: timings.dinner,
