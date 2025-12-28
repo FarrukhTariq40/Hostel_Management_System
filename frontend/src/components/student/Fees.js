@@ -11,7 +11,7 @@ const Fees = () => {
 
   const fetchFeeStatus = async () => {
     try {
-      const response = await api.get('/fees/status');
+      const response = await api.get('/api/fees/status');
       setFeeStatus(response.data);
       setFees(response.data.fees || []);
     } catch (error) {
