@@ -23,11 +23,11 @@ const AdminHome = () => {
   const fetchDashboardData = async () => {
     try {
       const [roomsRes, complaintsRes, feesRes, menuRes, notifRes] = await Promise.all([
-        api.get('/rooms'),
-        api.get('/complaints'),
-        api.get('/fees'),
-        api.get('/mess/menu'),
-        api.get('/notifications/unread-count'),
+        api.get('/api/rooms'),
+        api.get('/api/complaints'),
+        api.get('/api/fees'),
+        api.get('/api/mess/menu'),
+        api.get('/api/notifications/unread-count'),
       ]);
 
       // Calculate occupancy rate
