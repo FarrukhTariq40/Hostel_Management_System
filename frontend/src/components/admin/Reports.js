@@ -11,7 +11,7 @@ const Reports = () => {
 
   const fetchReports = async () => {
     try {
-      const response = await api.get('/admin/reports');
+      const response = await api.get('/api/admin/reports');
       setReports(response.data || []);
       setSelected((response.data || [])[0] || null);
     } catch (error) {
